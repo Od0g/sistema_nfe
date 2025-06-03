@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Login</h2>
+    <form method="POST" action="{{ url_for('auth_routes.login') }}">
+        <div class="form-group">
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="remember_me" name="remember_me">
+            <label for="remember_me">Lembrar de mim</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+</div>
+{% endblock %}

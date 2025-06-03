@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}Cadastrar Usuário{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Cadastrar Novo Usuário</h2>
+    <form method="POST" action="{{ url_for('auth_routes.register') }}">
+        <div class="form-group">
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="role">Perfil:</label>
+            <select id="role" name="role" required>
+                <option value="">Selecione um perfil</option>
+                <option value="Gestor">Gestor</option>
+                <option value="Qualidade">Qualidade</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
+    </form>
+</div>
+{% endblock %}

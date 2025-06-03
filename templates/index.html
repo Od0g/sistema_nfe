@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+    <h1>Bem-vindo ao Sistema de Gestão de NF-e, {{ user.username }}!</h1>
+    <p>Seu perfil de acesso é: <strong>{{ user.role }}</strong>.</p>
+
+    <p>Use o menu de navegação acima para acessar as funcionalidades.</p>
+
+    <div class="dashboard-overview">
+        <h2>Visão Geral Rápida</h2>
+        <p>Aqui você pode ver um resumo das notas fiscais ou um gráfico rápido (a ser implementado).</p>
+        <ul>
+            <li>Total de NF-e Recebidas Pendentes: XX</li>
+            <li>Total de NF-e Expedidas Hoje: XX</li>
+            </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block title %}Recebimento de NF-e{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Registrar Recebimento de NF-e (Lote)</h2>
+    <form method="POST" action="{{ url_for('nfe_routes.recebimento') }}">
+        <div class="form-group">
+            <label for="chaves_acesso">Chaves de Acesso (uma por linha):</label>
+            <textarea id="chaves_acesso" name="chaves_acesso" rows="10" placeholder="Cole as chaves de acesso aqui (use Enter para separar)"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="numero_processo">Número de Processo (Opcional):</label>
+            <input type="text" id="numero_processo" name="numero_processo">
+        </div>
+        <div class="form-group">
+            <label for="responsavel_operacao">Responsável pela Operação:</label>
+            <input type="text" id="responsavel_operacao" name="responsavel_operacao" value="{{ current_user.username }}" required>
+        </div>
+        <div class="form-group">
+            <label for="turno">Turno:</label>
+            <select id="turno" name="turno" required>
+                <option value="">Selecione o Turno</option>
+                <option value="Turno 1">Turno 1</option>
+                <option value="Turno 2">Turno 2</option>
+                <option value="Turno 3">Turno 3</option>
+                <option value="Adm">Administrativo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="id_processo_qualidade">ID do Processo (Qualidade - Opcional):</label>
+            <input type="text" id="id_processo_qualidade" name="id_processo_qualidade">
+        </div>
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="responsavel_dli_pqm_checkbox" name="responsavel_dli_pqm_checkbox">
+            <label for="responsavel_dli_pqm_checkbox">DLI-PQM Responsável (Marcar para atribuir):</label>
+             <input type="hidden" id="responsavel_dli_pqm_name" name="responsavel_dli_pqm_name" value="">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Processar Recebimento</button>
+    </form>
+    <div id="status-processamento">
+        </div>
+</div>
+
+<script>
+    // Script para preencher o nome do usuário atual no campo 'Responsável pela Operação'
+    // e para controlar o campo 'Responsável DLI-PQM'
+    document.addEventListener('DOMContentLoaded', function() {
+        const responsavelOperacaoInput = document.getElementById('responsavel_operacao');
+        const dliPqmCheckbox = document.getElementById('responsavel_dli_pqm_checkbox');
+        const dliPqmNameInput = document.getElementById('responsavel_dli_pqm_name');
+
+        // Define o responsável pela operação com o nome de usuário atual (se logado)
+        {% if current_user.is_authenticated %}
+            responsavelOperacaoInput.value = "{{ current_user.username }}";
+        {% endif %}
+
+        // Lógica para preencher o campo oculto do DLI-PQM quando o checkbox for marcado
+        dliPqmCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                dliPqmNameInput.value = responsavelOperacaoInput.value; // Ou um nome fixo se preferir
+            } else {
+                dliPqmNameInput.value = '';
+            }
+        });
+    });
+</script>
+{% endblock %}

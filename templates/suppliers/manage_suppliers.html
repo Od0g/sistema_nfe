@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block title %}Gerenciar Fornecedores{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Cadastrar Novo Fornecedor</h2>
+    <form method="POST" action="{{ url_for('supplier_routes.manage_suppliers') }}">
+        <div class="form-group">
+            <label for="cnpj">CNPJ (apenas números):</label>
+            <input type="text" id="cnpj" name="cnpj" maxlength="14" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Nome/Razão Social:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Endereço:</label>
+            <input type="text" id="address" name="address">
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefone:</label>
+            <input type="text" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar Fornecedor</button>
+    </form>
+</div>
+
+<div class="table-container">
+    <h2>Fornecedores Cadastrados</h2>
+    {% if suppliers %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>CNPJ</th>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.id }}</td>
+                <td>{{ supplier.cnpj }}</td>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.address or '-' }}</td>
+                <td>{{ supplier.phone or '-' }}</td>
+                <td>{{ supplier.email or '-' }}</td>
+                <td>
+                    <a href="#" class="btn btn-secondary btn-small">Editar</a>
+                    <a href="#" class="btn btn-danger btn-small">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Nenhum fornecedor cadastrado ainda.</p>
+    {% endif %}
+</div>
+{% endblock %}

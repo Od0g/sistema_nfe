@@ -1,0 +1,30 @@
+Inicie o shell do Flask:
+Bash
+
+flask shell
+No shell, digite:
+Python
+
+from models import db, User
+app = create_app() # Cria uma instância do app
+app.app_context().push() # Empurra o contexto da aplicação
+
+# Cria o primeiro usuário Gestor
+admin_user = User(username='admin', email='admin@empresa.com', role='Gestor')
+admin_user.set_password('admin123') # Defina uma senha segura!
+db.session.add(admin_user)
+db.session.commit()
+print("Usuário 'admin' (Gestor) criado com sucesso!")
+Saia do shell (Ctrl+D).
+Reinicie o servidor Flask:
+
+Bash
+
+python run.py
+Teste no Navegador:
+
+Vá para http://127.0.0.1:5000/auth/login.
+Faça login com username: admin e password: admin123.
+Você deve ser redirecionado para a página inicial (index.html).
+No menu, o link "Cadastrar Usuário" deve aparecer (apenas para o Gestor). Teste o cadastro de um novo usuário 'Qualidade'.
+Teste o logout.

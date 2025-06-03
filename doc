@@ -1,0 +1,43 @@
+sistema_nfe/
+├── app.py                # Ponto de entrada da aplicação Flask, configuração e rotas principais
+├── config.py             # Configurações do aplicativo (secreto, DB URI, etc.)
+├── database.py           # Configuração do SQLAlchemy e modelos de banco de dados
+├── auth.py               # Lógica de autenticação e gerenciamento de usuários
+├── models.py             # Definição dos modelos de banco de dados (User, Supplier, NFe)
+├── routes/               # Módulo para organizar as rotas por funcionalidade
+│   ├── __init__.py
+│   ├── auth_routes.py    # Rotas de autenticação (login, logout, cadastro de usuários)
+│   ├── supplier_routes.py# Rotas para gestão de fornecedores
+│   ├── nfe_routes.py     # Rotas para recebimento, expedição e visualização de NF-e
+│   └── main_routes.py    # Rotas da dashboard, index, etc.
+├── services/             # Lógica de negócio, funções que interagem com os modelos
+│   ├── __init__.py
+│   ├── user_service.py   # Funções para manipulação de usuários
+│   ├── supplier_service.py# Funções para manipulação de fornecedores
+│   ├── nfe_service.py    # Funções para processamento de NF-e, extração de chave, etc.
+├── templates/            # Arquivos HTML
+│   ├── auth/
+│   │   └── login.html
+│   ├── users/
+│   │   └── register_user.html # Ou cadastro.html
+│   ├── suppliers/
+│   │   └── manage_suppliers.html
+│   ├── nfe/
+│   │   ├── recebimento.html
+│   │   ├── expedicao.html
+│   │   ├── relatorio.html
+│   │   └── protocolo.html
+│   └── layout.html       # Layout base
+│   └── index.html        # Dashboard
+├── static/               # Arquivos estáticos (CSS, JS, Imagens - logos, ícones)
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── scripts.js
+│   └── img/
+│       └── logo.png
+├── .env                  # Arquivo para variáveis de ambiente (nunca commitar em repositório público)
+├── requirements.txt      # Dependências do Python
+└── run.py                # Script simples para iniciar a aplicação
+
+
