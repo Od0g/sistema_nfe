@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: sistema-nfe
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn run:app"
+    envVars:
+      - key: SECRET_KEY
+        value: sua_chave_secreta
+      - key: DATABASE_URL
+        value: sqlite:///site.db  # ou outro banco se quiser

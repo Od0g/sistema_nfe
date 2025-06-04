@@ -13,6 +13,7 @@ from routes.main_routes import main_bp
 # from routes.user_routes import user_bp # Será adicionado depois
 
 def create_app():
+    #load_dotenv()  # <-- Carrega variáveis de ambiente do .env
     app = Flask(__name__)
     app.config.from_object(Config)
 
@@ -33,6 +34,7 @@ def create_app():
     
     @app.context_processor
     def inject_now():
+        from datetime import datetime
         return {'now': datetime.utcnow()} # Ou datetime.now() se quiser a hora local do servidor
 
     return app
