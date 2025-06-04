@@ -4,4 +4,4 @@ Flask-Login==0.6.3
 Werkzeug==2.3.7 # Para hashing de senhas, geralmente vem com Flask
 python-dotenv==1.0.0 # Para carregar variáveis de ambiente
 # ... outras libs
-Flask-Moment==1.2.0 # Ou a versão mais recente
+Flask-Moment==1.0.6 # Ou a versão mais recente
