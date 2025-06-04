@@ -5,3 +5,4 @@ Werkzeug==2.3.7 # Para hashing de senhas, geralmente vem com Flask
 python-dotenv==1.0.0 # Para carregar variáveis de ambiente
 # ... outras libs
 Flask-Moment==1.0.6 # Ou a versão mais recente
+gunicorn==21.2.0
